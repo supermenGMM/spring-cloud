@@ -14,7 +14,7 @@ spring:
     name: product-eureka
 
 server:
-  port: 8081
+  port: 8083
 eureka:
   client:
     registry-fetch-interval-seconds: 5
