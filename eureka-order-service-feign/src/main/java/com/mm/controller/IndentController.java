@@ -63,8 +63,8 @@ public class IndentController {
     @Autowired
     private ProductClient productClient;
     /**
-     * 使用ribbin
-     * 轮询
+
+     * feign 配置消费者
      */
     @GetMapping(value = "/feign/find/{id}")
     public Product findByIdRibbon(@PathVariable() String id) {
@@ -72,7 +72,8 @@ public class IndentController {
     }
 
     /**
-     * feign
+     * feign 上传文件
      */
+
 
 }
