@@ -12,23 +12,20 @@ spring:
     database: mysql
   application:
     name: product-eureka
+
 server:
-  port: 8083
+  port: 8081
 eureka:
   client:
     registry-fetch-interval-seconds: 5
-    service-url: http://localhost:1000/eureka/
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 
   instance:
     lease-renewal-interval-in-seconds: 10
-    metadata-map:
-      zone: abc
-      zhaomeng: bcd
     prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddr}:${spring.application.instance_id}:${server.port}
 
 
 
 
-spring:
-  application:
