@@ -14,7 +14,7 @@ public class OrderServiceApplication {
 	@LoadBalanced
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
-	}//底层使用okhttp进行http请求
+	}//底层使用 okhttp 进行 http请求
 	public static void main(String[] args) {
 		SpringApplication.run(OrderServiceApplication.class, args);
 	}

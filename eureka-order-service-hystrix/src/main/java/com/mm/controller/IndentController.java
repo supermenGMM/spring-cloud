@@ -47,6 +47,9 @@ public class IndentController {
         return  restTemplate.postForObject("http://product-eureka/product/find/"+id, (Object) null, Product.class);
     }
 
+    /**
+     * 熔断.服务降级
+     */
     @Autowired
     ProductService productService;
 
