@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "product")
+@RequestMapping(value = "/product")
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
@@ -18,7 +18,10 @@ public class ProductController {
     }
 
     @PostMapping(value = "/find/{id}")
-    public Product findById(@PathVariable(name = "id") int id) {
+    public Product findById(@PathVariable(name = "id") int id) throws InterruptedException {
+        Thread
+                .sleep(1000L);
+
         return productRepository.findById(id).get();
     }
 
