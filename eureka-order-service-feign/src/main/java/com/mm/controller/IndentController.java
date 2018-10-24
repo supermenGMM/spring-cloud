@@ -1,23 +1,28 @@
 package com.mm.controller;
 
 import com.mm.client.ProductClient;
+import com.mm.client.UploadClient;
 import com.mm.dao.IndentRepository;
 import com.mm.pojo.Indent;
 import com.mm.pojo.Product;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.io.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "indent")
+@RequestMapping(value = "/indent")
 public class IndentController {
     @Autowired
     private IndentRepository indentRepository;
@@ -71,9 +76,24 @@ public class IndentController {
         return  productClient.findById(id);
     }
 
+    @Autowired
+    UploadClient uploadClient;
     /**
      * feign 上传文件
      */
-
+    @GetMapping(value = "/upload")
+    public void uploadFile(){
+        File file = new File("d:/lianpay.txt");
+        FileItem fileItem = new DiskFileItemFactory().createItem("file", MediaType.MULTIPART_FORM_DATA_VALUE, true, file.getName());
+        try (InputStream in = new FileInputStream(file)){
+            IOUtils.copy(in, fileItem.getOutputStream());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        MultipartFile multipartFile = new CommonsMultipartFile(fileItem);
+        uploadClient.upload(multipartFile,1);
+    }
 
 }
