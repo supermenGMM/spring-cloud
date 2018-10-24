@@ -27,7 +27,7 @@ public class IndentController {
     @Autowired
     private IndentRepository indentRepository;
     @Autowired
-   private DiscoveryClient discoveryClient;
+   private DiscoveryClient discoveryClient;//负载均衡
     @Autowired
     private LoadBalancerClient loadBalancerClient;
     @Autowired
