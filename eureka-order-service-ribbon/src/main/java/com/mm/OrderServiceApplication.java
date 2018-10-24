@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class OrderServiceApplication {
 
 	@Bean
+	@LoadBalanced
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}//底层使用okhttp进行http请求

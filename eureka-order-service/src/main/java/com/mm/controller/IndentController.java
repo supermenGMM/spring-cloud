@@ -23,13 +23,11 @@ public class IndentController {
     @Autowired
    private DiscoveryClient discoveryClient;
     @Autowired
-    private LoadBalancerClient loadBalancerClient;
-    @Autowired
     private RestTemplate restTemplate;
     @GetMapping(value = "/find/{id}")
     public Product findById(@PathVariable(name = "id") int id) {
         Indent order = indentRepository.findById(id).get();
-        Product product = restTemplate.postForObject("http://127.0.0.1:8081/product/find/" + order.getProductId(), null, Product.class);
+        Product product = restTemplate.postForObject("http://localhost:8083/product/find/" + order.getProductId(), null, Product.class);
         return  product;
     }
 
@@ -47,25 +45,6 @@ public class IndentController {
         return  restTemplate.postForObject("http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/product/find/1", (Object) null, Product.class);
     }
 
-    /**
-     * 使用discoverLoadBalancer
-     * @param id
-     * @return
-     */
-    @GetMapping(value = "/loadbalancer/find/{id}")
-    public Product findByIdLoadBalancer(@PathVariable() String id) {
-        ServiceInstance serviceInstance = loadBalancerClient.choose("product-eureka");
-        System.out.println(serviceInstance.getHost()+",,"+serviceInstance.getPort());
-        return  restTemplate.postForObject("http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/product/find/1", (Object) null, Product.class);
-    }
 
-    /**
-     * 使用ribbin
-     * 轮询
-     */
-    @GetMapping(value = "/ribbon/find/{id}")
-    public Product findByIdRibbon(@PathVariable() String id) {
 
-        return  restTemplate.postForObject("http://product-eureka/product/find/"+id, (Object) null, Product.class);
-    }
 }
