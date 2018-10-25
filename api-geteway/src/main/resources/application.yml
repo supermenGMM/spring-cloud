@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: api-geteway
+server:
+  port: 8086
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+zuul:
+  routes:
+    ORDER-EUREKA-HYSTRIC: / order / **
