@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:supermenGMM/spring-cloud-config.git
+          username: supermenGMM
+          passphrase: 561359mm
+  server:
+    prot: 1201
+springcloudconfiggituser
