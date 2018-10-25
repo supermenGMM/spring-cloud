@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: turbine
+server:
+  port: 3000
+
+
+eureka:
+#  instance:
+#    metadata-map:
+#       management.port: ${management.port:8081}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+turbine:
+  app-config: ORDER-EUREKA-HYSTRIC
+  cluster-name-expression: "'default'"
+  combine-host-port: true
+#  aggregator:
+#      clusterConfig: CUSTOMERS

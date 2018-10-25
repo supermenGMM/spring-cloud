@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: "jdbc:mysql://localhost:3306/zhaomeng?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false"
+    url: "jdbc:mysql://10.3.200.4:3306/zhaomeng?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false"
     driver-class-name: com.mysql.jdbc.Driver
     username: "root"
     password: "root"
