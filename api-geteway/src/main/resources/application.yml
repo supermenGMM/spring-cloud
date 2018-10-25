@@ -9,5 +9,12 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 zuul:
+  prefix: /v1
+#前缀,可以加版本号
   routes:
-    ORDER-EUREKA-HYSTRIC: / order / **
+    EUREKA-PRODUCT-HOME2: /product/**
+
+    haha:
+      path: /order/**
+      serviceId: order-customer
+
