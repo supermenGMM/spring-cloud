@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: api-geteway
+server:
+  port: 8086
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+#传统路由配置
+zuul:
+  prefix: /v2
+
+#单实例配置
+    order-eureka-hystric:
+      path: /hystrix-order/**
+      url: http://localhost:8082
+#多实例配置
+#注意，这里的serviceId只是内部的名字，不是项目的application,name。 但是要配 ribbon.eureka.enabled才可以,但会导致上面那种方式失效。
+    product:
+      path: /pro/**
+      serviceId: pro
+#由于zuul.routes.<route>.serviceId 指定的是服务名称，默认情况下Ribbon会根据服务发现机制来获取配置服务名对应的实例清单。但是，该示例并没有整合类似Eureka之类的服务治理框架，所以需要将该参数设置为false，不然配置的serviceId是获取不到对应实例清单的
+ribbon:
+  eureka:
+    enabled: false
+    #该参数内容与zuul.routes.<route>.serviceId的配置相对应，开头的user-service对应了serviceId的值，这两个参数的配置相当于在该应用内部手工维护了服务与实例的对应关系。
+pro:
+  ribbon:
+    listOfServers: http://localhost:8083/,http://localhost:8081

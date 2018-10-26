@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: api-geteway
+server:
+  port: 8086
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+#服务路由配置
+zuul:
+  prefix: /v1
+#前缀,可以加版本号
+  routes:
+    EUREKA-PRODUCT-HOME2: /product/**
+#单实例多实例都可以。是通过serviceId（项目的application.name）来区分的
+    haha:
+      path: /product/**
+      serviceId: product-eureka
+#更简单的方式
+  #路由规则等价于上面通过path与serviceId组合使用的配置方式
+    order-eureka-hystrix: /order/**
