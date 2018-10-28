@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: order-customer
+  cloud:
+    config:
+#      discovery:
+#        enabled: true
+      uri: http://localhost:8012/
+      profile: default
+      label: master
+#      fail-fast: true
+  profiles:
+    active: default
+server:
+  port: 8085

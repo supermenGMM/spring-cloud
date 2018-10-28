@@ -4,9 +4,9 @@ import com.mm.dao.IndentRepository;
 import com.mm.pojo.Indent;
 import com.mm.pojo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +24,10 @@ public class IndentController {
    private DiscoveryClient discoveryClient;
     @Autowired
     private RestTemplate restTemplate;
+
+    @Value("${hehe}")
+    private String hehe;
+
     @GetMapping(value = "/find/{id}")
     public Product findById(@PathVariable(name = "id") int id) {
         Indent order = indentRepository.findById(id).get();
@@ -45,6 +49,9 @@ public class IndentController {
         return  restTemplate.postForObject("http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/product/find/1", (Object) null, Product.class);
     }
 
-
+    @GetMapping(value = "/hehe")
+    public String hehe() {
+        return hehe;
+    }
 
 }
