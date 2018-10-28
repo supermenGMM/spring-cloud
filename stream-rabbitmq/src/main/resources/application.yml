@@ -1,0 +1,12 @@
+spring:
+  rabbitmq:
+    host: 10.3.200.4
+    username: super
+    password: super
+    port: 5672
+  application:
+    name: stream-rabbitmq
+server:
+  port: 8091
+
+
