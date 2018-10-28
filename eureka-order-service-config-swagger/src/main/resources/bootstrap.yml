@@ -6,10 +6,13 @@ spring:
 #      discovery:
 #        enabled: true
       uri: http://localhost:8012/
-      profile: default
+      profile: dev
       label: master
 #      fail-fast: true
   profiles:
     active: default
 server:
   port: 8085
+
+swagger:
+  base-package: com.mm.controller

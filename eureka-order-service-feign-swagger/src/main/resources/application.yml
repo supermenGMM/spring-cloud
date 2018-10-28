@@ -11,6 +11,6 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     database: mysql
   application:
-    name: order-customer
+    name: order-customer-feign
 server:
   port: 8082
