@@ -1,13 +1,13 @@
 server:
-  port: 8761
+  port: 1111
 eureka:
   instance:
     hostname: peer1
   client:
-    register-with-eureka: false
-    fetch-registry: false
-#    service-url:
-#      defaultZone: http://peer2:8762/eureka
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer2:2222/eureka/
     enabled: true
 
 #logging:
