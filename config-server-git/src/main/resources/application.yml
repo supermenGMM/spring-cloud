@@ -5,9 +5,12 @@ spring:
     config:
       server:
         git:
-          uri: git@github.com:supermenGMM/spring-cloud-config.git
+          uri: https://github.com/supermenGMM/spring-cloud-config.git
           username: supermenGMM
-          passphrase: 561359mm
-  server:
-    prot: 1201
-springcloudconfiggituser
+          password: 561359mm
+          skip-ssl-validation: true
+
+#          timeout: 5
+#          username: 852458550@qq.com
+server:
+    port: 8012
